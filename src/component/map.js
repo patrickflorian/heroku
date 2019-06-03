@@ -79,8 +79,8 @@ class MapContainer extends Component {
               position={{ lat: 5.4429218, lng: 10.068471199999976 }}
               icon={{
                 url: this.getMarkerImage(),
-                anchor: new google.maps.Point(10, 32),
-                scaledSize: new google.maps.Size(20, 32)
+                anchor: new google.maps.Point(16, 32),
+                scaledSize: new google.maps.Size(32, 32)
               }}
             />
 
