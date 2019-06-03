@@ -65,7 +65,7 @@ class MapContainer extends Component {
     return (
 
       <section className="commerce-blog-wrapper col-12 md-col-9 px2 sm-px0 pt2 pb3 md-px4 md-pt1 md-pb1">
-        <h1 className="center justify-center col-12"> <img src={mapIcon} alt="[icon-map]" style={{ width: '50px', height: 'auto' }} />Map</h1>
+        <h1 className="center justify-center col-12"> Map</h1>
         <div id="map">
           <Map containerStyle={{ width: '800px',height: 'auto'}}
             google={this.props.google}
