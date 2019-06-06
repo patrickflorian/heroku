@@ -14,9 +14,9 @@ class Login extends Component {
                     les evenements</b> qui y sont preparés au sein du Campus de l'Université de Dschang<br /><br />
                     <span className="italic">Aussi profitez de l'<b><a href="javascipt:void(0)" className="important">API</a></b> que nous mettons
                     a votre disposition pour une eventuelle utilisation des donnnées en notre possession</span></p>
-                <div className="center">
+                {/* <div className="center">
                     <img src={logo} width="100%" className=" mb2 left" layout="responsive " alt="Company logo" noloading=""/>
-                </div>
+                </div> */}
             </aside>
         )
     }
