@@ -97,7 +97,11 @@ class Section extends  Component{
         if(this.props.activeMenuItem=== 'pos') return showPositionsTables()
         if(this.props.activeMenuItem==='user') return showUsersTable()
         if(this.props.activeMenuItem==='map') return (<Map></Map>)
-        return ('')
+        return (
+        <section className="commerce-blog-wrapper col-12 md-col-9 px2 sm-px0 pt2 pb3 md-px4 md-pt1 md-pb1">
+
+        </section>
+        );
     }
 }
 const mapStateToProps=(state)=>{

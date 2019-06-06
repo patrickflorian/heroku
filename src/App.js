@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
-import {Provider} from 'react-redux';
+
+import { Route, NavLink, BrowserRouter as Router, Switch, } from 'react-router-dom'
+import { Provider } from 'react-redux';
 import Store from './store/config'
-
-import HeaderBar from './component/headerBar';
-import SideBar from './component/sideBar';
-import Aside from './component/aside';
-import Section from './component/section'
-import Footer from './component/footer'
-
+import Dashboard from './component/dashboard'
+import Login from './component/login'
 import './css/page.css';
 
 class App extends Component {
   render() {
     return (<Provider store={Store}>
-      <HeaderBar></HeaderBar>
-      <SideBar></SideBar>
-      <main id="content" role="main" className="main md-flex flex-wrap items-start m2  p2">
-      <div className="border-bottom  md-col-12"></div>
-      <Aside></Aside>
-      <Section></Section>
-      </main>
-      <Footer></Footer>
-      </Provider>
+      <Router>
+
+        <Switch>
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/" component={Login} />
+          <Route component={Login} />
+        </Switch>
+
+      </Router>
+    </Provider>
     );
   }
 }

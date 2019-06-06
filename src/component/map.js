@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import markerIcon from '../icons/marker.svg'
 import markerIconFocused from '../icons/marker.1.svg'
-import mapIcon from '../icons/map.svg'
-
 //import {Gmaps, Marker, InfoWindow} from 'react-gmaps';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
@@ -19,7 +17,7 @@ class MapContainer extends Component {
   }
   onMarkerClick = (props, marker, e) => {
     let {
-      map, google, position, mapCenter
+       google
     } = this.props;
     this.setState({
       selectedPlace: props,
@@ -54,7 +52,7 @@ class MapContainer extends Component {
   render() {  
 
     let {
-      map, google, position, mapCenter
+       google, 
     } = this.props;
     /* const coords = {
         lat: 10.063141,
