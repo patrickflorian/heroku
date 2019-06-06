@@ -16,9 +16,7 @@ class MapContainer extends Component {
   onMapCreated() {
   }
   onMarkerClick = (props, marker, e) => {
-    let {
-       google
-    } = this.props;
+    
     this.setState({
       selectedPlace: props,
       activeMarker: marker,

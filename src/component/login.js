@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../img/landing.png'
+import {Link } from 'react-router-dom'
 
 import user from "../icons/user2.svg"
 
@@ -41,7 +41,7 @@ class Login extends Component {
 
                         <div>
                             <button type="submit" className="ampstart-btn ampstart-btn-secondary caps col-12 mt4 mb4 border-none">
-                                SIGN IN
+                            <Link to="/dashboard">SIGN IN</Link>
                             </button>
                         </div>
                     </form>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Route, NavLink, BrowserRouter as Router, Switch, } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch, } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import Store from './store/config'
 import Dashboard from './component/dashboard'
