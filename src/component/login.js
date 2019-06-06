@@ -7,16 +7,16 @@ class Login extends Component {
     aside = () => {
         return (
             <aside className=" md-col-4 md-ml8 mt6 content-end justify-content items-end justify-end ml4 ">
-                <div className="center">
-                    <img src={logo} width="100%" className=" mb2 left" layout="responsive " alt="Company logo" noloading=""/>
-                </div>
+                
                 <h1 className="h5 md-pb2 mt4"> BANQUE DE DONNEES POUR SUPPORT D’ APPLICATION DE GEOLOCALISATION DES SALLES A
                 L'UNIVERSITE DE DSCHANG</h1>
                 <p className="mb2 ">Soyez à jour sur les <b>positions des salles, leur disponibilité, leur occupation ainsi que
                     les evenements</b> qui y sont preparés au sein du Campus de l'Université de Dschang<br /><br />
                     <span className="italic">Aussi profitez de l'<b><a href="javascipt:void(0)" className="important">API</a></b> que nous mettons
                     a votre disposition pour une eventuelle utilisation des donnnées en notre possession</span></p>
-
+                <div className="center">
+                    <img src={logo} width="100%" className=" mb2 left" layout="responsive " alt="Company logo" noloading=""/>
+                </div>
             </aside>
         )
     }
