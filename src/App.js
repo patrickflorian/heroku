@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import Store from './store/config'
 import Dashboard from './component/dashboard'
 import Login from './component/login'
+import ForgotPWD from './component/forgot-pwd'
 import './css/page.css';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/forgotpwd" component={ForgotPWD} />
           <Route path="/" component={Login} />
           <Route component={Login} />
         </Switch>

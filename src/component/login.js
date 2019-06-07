@@ -6,7 +6,7 @@ import user from "../icons/user2.svg"
 class Login extends Component {
     aside = () => {
         return (
-            <aside className=" md-col-4 md-ml8 mt6 content-end justify-content items-end justify-end ml4 ">
+            <aside className=" md-col-4 md-ml8  mt6 content-end justify-content items-end justify-end ml1 ">
                 
                 <h1 className="h5 md-pb2 mt4"> BANQUE DE DONNEES POUR SUPPORT D’ APPLICATION DE GEOLOCALISATION DES SALLES A
                 L'UNIVERSITE DE DSCHANG</h1>
@@ -46,7 +46,7 @@ class Login extends Component {
                         </div>
                     </form>
                 </div>
-                <div><a href="/forgot_pwd" className="label">Forget password</a>
+                <div><Link to="/forgotpwd">Forget password</Link>
                 </div>
 
             </section>
