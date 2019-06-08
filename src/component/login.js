@@ -24,10 +24,10 @@ class Login extends Component {
     section = () => {
         return (
             <section className="commerce-blog-wrapper col-12 md-col-4 px2 sm-px0 pt2 pb3 md-px4 md-pt1 md-pb1 md-mx6 right">
-                <div className="mb4 center">
+                <div className="mb1 center">
                     <img src={user}  width="100" height="100" alt="" />
                 </div>
-                <h3 className="center">Log IN Here</h3>
+                <h3 className="center xs-hide">Log IN Here</h3>
                 <div className="flex flex-column">
                     <form action="index.html">
                         <div className="ampstart-input inline-block relative m0 p0 mb2 mt3 border-bottom ">

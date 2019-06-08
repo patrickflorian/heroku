@@ -56,18 +56,30 @@ class MapContainer extends Component {
         lat: 10.063141,
         lng: 5.448287
       };
-        
+      
       const params = {sensor: true, key: 'AIzaSyAwatu1W2nVb1cIknUFjVkhUjC8fpzWiiM'}; */
+      const styles={
+        map:{
+          maxWidth:'85%',
+          margin :' 2% auto 1'
+        },
+        container:{
+          minHeight:'300px',
+          maxHeight:'800px',
+          height:'70%'
+        }
+
+      }
     return (
 
       <section className="commerce-blog-wrapper col-12 md-col-9 px2 sm-px0 pt2 pb3 md-px4 md-pt1 md-pb1">
         <h1 className="center justify-center col-12"> Map</h1>
         <div id="map">
-          <Map containerStyle={{ width: '800px',height: 'auto'}}
+          <Map containerStyle={styles.container}
             google={this.props.google}
             zoom={16}
             initialCenter={{ lat: 5.4429218, lng: 10.068471199999976 }}
-            style={{ width: '800px', height: '400px', position: 'relative' }}
+            style={styles.map}
             onClick={this.onMapClicked}>
 
             <Marker onClick={this.onMarkerClick}
