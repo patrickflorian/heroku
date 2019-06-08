@@ -7,7 +7,7 @@ import Map from './map'
 
 function showPositionsTables() {
     return (
-        <section className="commerce-blog-wrapper col-12 md-col-9 px2 sm-px0 pt2 pb3 md-px4 md-pt1 md-pb1">
+        <section className="commerce-blog-wrapper col-12 md-col-9 px1 pt1 pb3 md-px0 md-pt1 md-pb1">
                 <h1 className="center justify-center">POSITIONS ENREGISTREES</h1>
             <article>
                     <div className="table-responsive mt3">
@@ -50,7 +50,7 @@ function showPositionsTables() {
 }
 function showUsersTable(){
     return (
-        <section class="commerce-blog-wrapper col-12 md-col-9 px2 sm-px0 pt2 pb3 md-px4 md-pt1 md-pb1">
+        <section class="commerce-blog-wrapper col-12 md-col-9 px1 pt1 pb3 md-px0 md-pt1 md-pb1">
                     <h1 class="center justify-center">Utilisateurs du système</h1> 
                 <article>
                     <div class="table-responsive mt3">
@@ -98,7 +98,7 @@ class Section extends  Component{
         if(this.props.activeMenuItem==='user') return showUsersTable()
         if(this.props.activeMenuItem==='map') return (<Map></Map>)
         return (
-        <section className="commerce-blog-wrapper col-12 md-col-9 px2 sm-px0 pt2 pb3 md-px4 md-pt1 md-pb1">
+        <section className="commerce-blog-wrapper col-12 md-col-9 px1 pt1 pb3 md-px0 md-pt1 md-pb1">
 
         </section>
         );

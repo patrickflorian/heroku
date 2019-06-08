@@ -7,7 +7,7 @@ import AuthButton from './logInButton'
 class Login extends Component {
     aside = () => {
         return (
-            <aside className=" md-col-4 md-ml8  mt6 content-end justify-content items-end justify-end ml1 ">
+            <aside className=" md-col-4 md-ml8 xs-hide sm-hide  mt6 content-end justify-content items-end justify-end ml1 ">
                 
                 <h1 className="h5 md-pb2 mt4"> BANQUE DE DONNEES POUR SUPPORT D’ APPLICATION DE GEOLOCALISATION DES SALLES A
                 L'UNIVERSITE DE DSCHANG</h1>

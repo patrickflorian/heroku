@@ -22,7 +22,7 @@ class Dashboard extends Component {
             <div>
                 <HeaderBar></HeaderBar>
                 <SideBar></SideBar>
-                <main id="content" role="main" className="main md-flex flex-wrap items-start m2  p2">
+                <main id="content" role="main" className="main md-flex flex-wrap items-start m0 md-m2  p0 md-p2">
                     <div className="border-bottom  md-col-12"></div>
                     <Aside></Aside>
                     <Section></Section>
