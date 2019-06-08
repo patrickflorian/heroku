@@ -1,6 +1,6 @@
 {
-  "name": "mymap",
-  "version": "0.1.0",
+  "name": "MyMap",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
@@ -15,8 +15,8 @@
     "serve": "^9.4.0"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
+    "start": "react-scripts start",
+    "serve": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

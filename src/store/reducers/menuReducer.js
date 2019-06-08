@@ -1,15 +1,21 @@
-const initialState = {
-    activeMenuItem:'map'
-};
+const initialState = 'map'
+
 function activeMenuReducer(state=initialState,action){
     let nextState;
     switch (action.type) {
         case 'TOGGLE_ACTIVE_MENU_ITEM':
-            nextState={
-                activeMenuItem:action.value,
-            }
-            console.log(action.value)
+            nextState=action.value
             break;
+        /* case 'AUTHENTICATE' :
+          if(action.value === "login"){
+              nextState = authenticate()
+              setTimeout(action.redirect, 100);
+          }
+          if(action.value==="logout"){
+            nextState = signout()
+            setTimeout(action.redirect, 100);
+          }
+        break; */
     
         default:
             return state;

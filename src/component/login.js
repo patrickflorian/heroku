@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link } from 'react-router-dom'
 
 import user from "../icons/user2.svg"
+import AuthButton from './logInButton'
 
 class Login extends Component {
     aside = () => {
@@ -40,9 +41,7 @@ class Login extends Component {
                         </div>
 
                         <div>
-                            <button type="submit" className="ampstart-btn ampstart-btn-secondary caps col-12 mt4 mb4 border-none">
-                            <Link to="/dashboard">SIGN IN</Link>
-                            </button>
+                            <AuthButton></AuthButton>
                         </div>
                     </form>
                 </div>

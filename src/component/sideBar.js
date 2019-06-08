@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 
 
 import SideBarNav from './sideBarNav'
+import AuthButton from './logOutButton'
 import '../css/page.css'
 
 class SideBar extends Component{
@@ -16,9 +17,7 @@ class SideBar extends Component{
                 </div>
                 <nav className="ampstart-sidebar-nav ampstart-nav">
                     <SideBarNav withimage='true'></SideBarNav>
-                    <button className="ampstart-btn ampstart-btn-secondary caps col-12 mt4 mb4 border-none">
-                    <Link to="/">se deconnecter</Link>
-                </button>
+                   <AuthButton></AuthButton>
                 </nav>
 
             </amp-sidebar>

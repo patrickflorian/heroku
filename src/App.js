@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Route, BrowserRouter as Router, Switch, } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch, Redirect, withRouter } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import Store from './store/config'
 import Dashboard from './component/dashboard'
@@ -8,6 +8,40 @@ import Login from './component/login'
 import ForgotPWD from './component/forgot-pwd'
 import './css/page.css';
 
+
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true;
+    setTimeout(cb, 100); // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
+  }
+};
+function PrivateRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        fakeAuth.isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/dashboard",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+function Protected() {
+  return <h3>Protected</h3>;
+}
 class App extends Component {
   render() {
     return (<Provider store={Store}>
@@ -18,6 +52,7 @@ class App extends Component {
           <Route path="/forgotpwd" component={ForgotPWD} />
           <Route path="/" component={Login} />
           <Route component={Login} />
+          <PrivateRoute path="/protected" component={Protected} />
         </Switch>
 
       </Router>
