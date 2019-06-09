@@ -60,10 +60,11 @@ class MapContainer extends Component {
       const params = {sensor: true, key: 'AIzaSyAwatu1W2nVb1cIknUFjVkhUjC8fpzWiiM'}; */
       const styles={
         map:{
-          maxWidth:'85%',
+          maxWidth:'90%',
           margin :' 2% auto 1'
         },
         container:{
+          width: '100%',
           minHeight:'300px',
           maxHeight:'800px',
           height:'70%'
