@@ -8,9 +8,6 @@ import Login from './component/login'
 import ForgotPWD from './component/forgot-pwd'
 import './css/page.css';
 
-import UserForm from './component/userForm'
-
-
 const fakeAuth = {
   isAuthenticated: false,
   authenticate(cb) {
@@ -52,12 +49,10 @@ class App extends Component {
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/forgotpwd" component={ForgotPWD} />
-          <Route path="/user" component={UserForm}/>
           <Route path="/" component={Login} />
           <Route component={Login} />
           <PrivateRoute path="/protected" component={Protected} />
         </Switch>
-
       </Router>
     </Provider>
     );

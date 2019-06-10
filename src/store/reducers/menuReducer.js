@@ -5,7 +5,6 @@ function activeMenuReducer(state=initialState,action){
         case 'TOGGLE_ACTIVE_MENU_ITEM':
             nextState=action.value
             break;
-
         default:
             return state;
     }

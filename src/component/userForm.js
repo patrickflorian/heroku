@@ -3,12 +3,16 @@ import React ,{Component } from 'react'
 
 class UserForm extends Component{
     state={
-        login:null,
-        username:null,
-        password:null,
-        role:null
+        user:{
+            login:null,
+            username:null,
+            password:null,
+            role:null
+        }
     }
+    updateUserRole(){
 
+    }
     render(){
         return (
             <div className="col-12 mb2">
