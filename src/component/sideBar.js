@@ -1,12 +1,23 @@
 import React ,{Component} from 'react';
+import {connect} from 'react-redux'
+import {Redirect,Link } from 'react-router-dom';
+import { userActions } from '../actions';
 
 
 import SideBarNav from './sideBarNav'
-import AuthButton from './logOutButton'
 import '../css/page.css'
 
 class SideBar extends Component{
+    constructor(props){
+        super(props)
+        this.handleclick=this.handleclick.bind(this)
+    }
+    handleclick(){
+        console.log('lo out')
+        this.props.dispatch(userActions.logout());
+    }
     render(){
+        console.log(this.props)
         return (
             <amp-sidebar id="header-sidebar" className="ampstart-sidebar px2 col-4  md-flex flex-column justify-content item-center  justify-start"
                 layout="nodisplay">
@@ -16,15 +27,23 @@ class SideBar extends Component{
                 </div>
                 <nav className="ampstart-sidebar-nav ampstart-nav mx2 pt2">
                     <SideBarNav withimage='true'></SideBarNav>
-                    <ul className="col-5 list-reset  ampstart-label"><h1 className="h5 md-pb2 "> BANQUE DE DONNEES POUR SUPPORT D’ APPLICATION DE GEOLOCALISATION DES SALLES A
+                    <ul className="justify-center">
+                        <h1 className="h5 md-pb2 "> BANQUE DE DONNEES <br />POUR SUPPORT D’APPLICATION <br />DE GEOLOCALISATION DES SALLES <br />A
           L'UNIVERSITE DE DSCHANG</h1>
-                <p className="mb2 ">Soyez à jour sur les <b>positions des salles, leur disponibilité, leur occupation ainsi que les evenements</b> qui y sont preparés au sein du Campus de l'Université de Dschang<br /><br /> <span className="italic">Aussi profitez de l'<b><a href="/api" className="important">API</a></b> que nous mettons a votre disposition pour une eventuelle réutilisation des donnnées en notre possession</span></p>
-                </ul>
-                   <AuthButton></AuthButton>
+                    </ul>
+
+                    {(this.props.user) ?
+                        <Link to='/login' className='ampstart-btn ampstart-btn-secondary caps col-12 mt4 mb4 border-none' on="tap:header-sidebar.toggle" tabIndex="0" onClick={this.handleClick} >
+                            disconnect
+                        </Link>
+                        : <Redirect to="/login"></Redirect>}
                 </nav>
 
             </amp-sidebar>
         )
     }
 }
-export default SideBar;
+const mapStateToProps=(state)=>{
+    return {user:state.authentication.user}
+}
+export default connect(mapStateToProps) (SideBar);

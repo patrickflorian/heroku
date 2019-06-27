@@ -1,6 +1,7 @@
 import React ,{Component} from  'react'
 import {connect} from 'react-redux'
-import {Redirect } from 'react-router-dom'
+import {Redirect } from 'react-router-dom';
+import { userActions } from '../actions';
 
 class LogOutButton extends Component{
     constructor(props){
@@ -9,10 +10,14 @@ class LogOutButton extends Component{
             user:{isAuthenticated:true}
         }
     }
+    handleclick(e){
+        const { dispatch } = this.props;
+        dispatch(userActions.logout())
+    }
     render(){
-        if(this.props.user.isAuthenticated)
+        if(this.props.user)
         return (
-            <button onClick={()=>this.props.onDisconnect({ type: "AUTHENTICATE", value: "logout",redirect:"/" })} 
+            <button onClick={this.handleClick} 
             className='ampstart-btn ampstart-btn-secondary caps col-12 mt4 mb4 border-none' on="tap:header-sidebar.toggle" tabIndex="0">
                 disconnect
             </button>
@@ -30,7 +35,7 @@ const mapStateToProps=(state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
     return {
-        onDisconnect :(action)=>{ dispatch(action) }
+        dispatch :(action)=>{ dispatch(action) }
     }
 }
 

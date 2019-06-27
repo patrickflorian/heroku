@@ -23,7 +23,7 @@ class SideBarNav extends Component{
                     
                     {(this.props.withimage)?'':<SideBarImage src={logo}></SideBarImage>}
                     
-                    <NavInput placeholder="Rechercher" onChange={this.handleInputChange}></NavInput>
+                    <NavInput placeholder="Search" onChange={this.handleInputChange}></NavInput>
                     
                     <div className="border-top"></div>
 
@@ -31,7 +31,7 @@ class SideBarNav extends Component{
 
                     <div className="border-top"></div>
 
-                    {(this.state.activeMenuItem==="pos") ?<NavItem title="POSITIONS" icon={marker} onClick={()=>this._toggleActiveMenu('pos')} active={true}></NavItem>:<NavItem title="POSITIONS" icon={marker} onClick={()=>this._toggleActiveMenu('pos')} active={false}></NavItem>}
+                    {(this.state.activeMenuItem==="pos") ?<NavItem title="LOCATIONS" icon={marker} onClick={()=>this._toggleActiveMenu('pos')} active={true}></NavItem>:<NavItem title="LOCATIONS" icon={marker} onClick={()=>this._toggleActiveMenu('pos')} active={false}></NavItem>}
 
                     <div className="border-top"></div>
 

@@ -4,6 +4,8 @@ import markerIconFocused from '../icons/marker.1.svg'
 //import {Gmaps, Marker, InfoWindow} from 'react-gmaps';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
+import {locationActions } from '../actions';
+
 class MapContainer extends Component {
 
   state = {
@@ -12,8 +14,12 @@ class MapContainer extends Component {
     selectedPlace: {},
     activeMarkerFocused:false,
   };
+  componentDidMount() {
+    this.props.dispatch(locationActions.getAll());
+}
 
   onMapCreated() {
+
   }
   onMarkerClick = (props, marker, e) => {
     
@@ -62,7 +68,7 @@ class MapContainer extends Component {
           maxWidth: '950px',
           width: '100%',
           minHeight:'300px',
-          maxHeight:'800px',
+          maxHeight:'100%',
           height:'70%'
         }
 
