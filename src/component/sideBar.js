@@ -17,7 +17,6 @@ class SideBar extends Component{
         this.props.dispatch(userActions.logout());
     }
     render(){
-        console.log(this.props)
         return (
             <amp-sidebar id="header-sidebar" className="ampstart-sidebar px2 col-4  md-flex flex-column justify-content item-center  justify-start"
                 layout="nodisplay">

@@ -6,8 +6,8 @@ class UserForm extends Component{
     constructor(props){
         super(props);
         this.state={
-                passwordmatch:false
-            };
+            passwordmatch:false
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
@@ -37,27 +37,24 @@ class UserForm extends Component{
     
     handleSubmit(e){
         e.preventDefault();
-        if (this.props.users.action==="update") this.handleUpdate()
-        else this.handleAdd()
+        if (this.props.users.action==="update") this.handleUpdate();
+        else this.handleAdd();
 
     }
     handleUpdate() {
-        console.log("update launch")
+        console.log("update launch");
         this.setState({ submitted: true });
         const {id,email, password,role ,confirm_pwd} = this.state;
         const { dispatch } = this.props;
     
-        if ( this.passwordMatch(confirm_pwd,password) 
-                && email 
-                && password 
-                && role) {
+        if ( this.passwordMatch(confirm_pwd,password) && email && password && role) {
             console.log('in');
             dispatch(/* userActions.update({id:users.update.user.id,email, password,role} */{type:userConstants.UPDATE_SUCCESS,user:{id,email, password,role}});
         }
     }
 
     handleAdd() {
-        console.log("add launch")
+        console.log("add launch");
         this.setState({ submitted: true });
         const { email, password,role ,confirm_pwd} = this.state;
         const { dispatch } = this.props;
@@ -69,46 +66,48 @@ class UserForm extends Component{
     }
     render(){
         let {email,password}={email:"",password:"",role:""};
-        const {users,submitted} = this.props
+        const {users} = this.props;
+        const {submitted} = this.state;
         if(users.action==="update"){
-            const id = users.update.id;
             email=users.update.user.email;
             password=users.update.user.password;
         }
-        console.log(this.state);
         return (
             <form className="col-12 mb2" onSubmit={this.handleSubmit}>
                
                 <div className="md-col-6 md-pl2 ">
-                    <div className="ampstart-input inline-block relative m0 p0  mt2 border-bottom">
+                    <div className="ampstart-input inline-block relative m0 p0 mb1 mt2 border-bottom">
                         <select onChange={this.handleChange} name="role" required>
-                            <option>----------</option>
+                            <option value=''>----------</option>
                             <option value="collector"  >Collector</option>
                             <option value="administrator" >Administrator</option>
                         </select>
                         <label htmlFor="role" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Rôle</label>
                     </div>
-                    {submitted && !this.state.role &&
+                    {((submitted && !this.state.role)||this.state.role==='') &&
                                 <div className="help-block right danger">select a role</div>
                             }
-                    <div className="ampstart-input inline-block relative m0 p0  mt3 border-bottom ">
+                    <div className="ampstart-input inline-block relative m0 p0 mb1 mt3 border-bottom ">
                         <input type="email" name="email" id="email" defaultValue={email} onChange={this.handleChange} className="block border-none p0 m0" placeholder="email"  required/>
                         <label htmlFor="email" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Email</label>
                     </div>
                     {submitted && !this.state.email &&
                                 <div className="help-block right danger">email is required</div>
                             }
-                    <div className="ampstart-input inline-block relative m0 p0 mt4 border-bottom">
+                    <div className="ampstart-input inline-block relative m0 p0  border-bottom">
                         <input type="password"required  defaultValue={password} name="password" id="password"  onChange={this.handleChange} className="block border p0 m0" placeholder="Password" />
                         <label htmlFor="pwd" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Password</label>
                     </div>
                     {submitted && !this.state.password &&
                                 <div className="help-block right danger">password is required</div>
                             }
-                    <div className="ampstart-input inline-block relative m0 p0 mb3 mt2 border-bottom">
+                    <div className="ampstart-input inline-block relative m0 p0 mb1 mt2 border-bottom">
                         <input type="password" name="confirm_pwd" defaultValue={password} id="confirm_pwd" onChange={this.handleChange} className="block border p0 m0" placeholder="confirm password" required/>
                         <label htmlFor="C" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">confirm password</label>
                     </div>
+                    {submitted && !this.state.passwordmatch &&
+                                <div className="help-block right danger mb1">password does'nt match</div>
+                            }
                     <div className="mb2 md-mt3">
                         {
                             (users.action==="update")?

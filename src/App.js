@@ -7,7 +7,6 @@ import Dashboard from './component/dashboard';
 import Login from './component/login';
 import ForgotPWD from './component/forgot-pwd';
 import './css/page.css';
-import { isNull } from 'util';
 
 function PrivateRoute({ component: Component, ...rest }) {
   return (

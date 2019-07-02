@@ -1,4 +1,4 @@
-import { authHeader, history } from '../helpers';
+import { authHeader } from '../helpers';
 
 export const userService = {
     login,
@@ -11,6 +11,7 @@ export const userService = {
 };
 
 function login(username, password) {
+    // eslint-disable-next-line no-unused-vars
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

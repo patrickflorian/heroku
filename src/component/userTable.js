@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import UserForm from './userForm';
 import { userActions } from '../actions';
 import { userConstants } from '../constants';
+
+import UserForm from './userForm';
+import loading from '../icons/loading.gif';
 
 class UserTable extends React.Component{
     constructor(props){
@@ -49,12 +51,17 @@ class UserTable extends React.Component{
         const {users} =this.props;
         return(
             <section className="comrce-bmelog-wrapper col-12 md-col-9 px2 sm-px0 pt2 pb3 md-px4 md-pt1 md-pb1">
-                {users.loading &&
-                        <img alt="" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                    }
             
                 {users.error && <span className="danger">ERROR: {users.error}</span>}
-        
+                {users.loading && <div> <amp-lightbox id="my-lightbox"
+                    layout="display">
+                    <div class="lightbox"
+                        on="tap:my-lightbox.close"
+                        role="button"
+                        tabindex="0">
+                        <h1><img class="center" width="200px" src={loading} alt="" /></h1>
+                    </div>
+                </amp-lightbox></div>}
         
                 {this.showUserForm()   }
                 <article>
