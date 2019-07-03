@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Link ,Redirect} from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../actions';
 
-
-import user from "../icons/user2.svg"
+import logo from '../img/mymap.png';
+import user from "../icons/user2.svg";
 //import landing from '../img/landing.png'
 
 
@@ -24,7 +24,7 @@ class Login extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    
+
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
@@ -69,28 +69,28 @@ class Login extends Component {
                         <div className="ampstart-input inline-block relative m0 p0 mb2 mt3 border-bottom ">
                             <input type="text" name="email" id="email" className="block border-none p0 m0" placeholder="email" value={email} onChange={this.handleChange} />
                             <label htmlFor="email" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Login</label>
-                            
+
                         </div>
                         {submitted && !email &&
-                                <div className="help-block right danger">email is required</div>
-                            }
+                            <div className="help-block right danger">email is required</div>
+                        }
 
                         <div className="ampstart-input inline-block relative m0 p0 mb3 mt2 border-bottom">
                             <input type="password" name="password" id="pwd" className="block border p0 m0" placeholder="Password" value={password} onChange={this.handleChange} />
                             <label htmlFor="pwd" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Password</label>
-                            
+
                         </div>
-                            {submitted && !password &&
-                                <div className="help-block right danger">Password is required</div>
-                            }
+                        {submitted && !password &&
+                            <div className="help-block right danger">Password is required</div>
+                        }
                         <div>
                             <button className='ampstart-btn ampstart-btn-secondary caps col-12 mt4 mb4 border-none'>
                                 Sign In {loggingIn &&
-                            <img alt="" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                        }
+                                    <img alt="" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                }
                             </button>
                         </div>
-                        
+
                     </form>
                 </div>
                 <div><Link to="/forgotpwd">Forget password</Link>
@@ -106,8 +106,19 @@ class Login extends Component {
             height: '100%',
         }
 
-        return ( this.props.user?<Redirect to='/dashboard'></Redirect>:
+        return (this.props.user ? <Redirect to='/dashboard'></Redirect> :
             <main id="content" role="main" style={style} className="main md-flex flex-wrap  m2  p2 content-center  justify-content items-center justify-center  ">
+                <header
+                    className="ampstart-headerbar fixed flex justify-start items-center top-0 left-0 right-0 pl2 pr4 pt2 md-pt0 ">
+
+                    <a href="/home"
+                        className="text-decoration-none inline-block mx-auto ampstart-headerbar-home-link mb1 md-mb0 ">
+                        <amp-img src={logo} width="100" height="30" layout="fixed" class="my0 mx-auto "
+                            alt="logo">
+                        </amp-img>
+                    </a>
+
+                </header>
                 {this.aside()}
                 {this.section()}
             </main>
@@ -116,9 +127,9 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn,user } = state.authentication;
+    const { loggingIn, user } = state.authentication;
     return {
-        loggingIn,user
+        loggingIn, user
     };
 }
 export default connect(mapStateToProps)(Login)

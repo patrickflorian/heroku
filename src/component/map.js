@@ -77,7 +77,7 @@ class MapContainer extends Component {
         margin: ' 2% auto 1'
       },
       container: {
-        maxWidth: '950px',
+        maxWidth: '900px',
         width: '100%',
         minHeight: '300px',
         maxHeight: '100%',

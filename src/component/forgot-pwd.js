@@ -24,7 +24,7 @@ class ForgotPWD extends Component {
                         </div>
                     </form>
                 </div>
-                <Link to="/"><span className="important">back to sign in page</span> </Link>
+                <Link to="/login"><span className="important">back to sign in page</span> </Link>
             </section>
         )
     }

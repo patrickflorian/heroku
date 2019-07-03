@@ -7,6 +7,7 @@ import Dashboard from './component/dashboard';
 import Login from './component/login';
 import ForgotPWD from './component/forgot-pwd';
 import './css/page.css';
+import Homepage from './component/homepage';
 
 function PrivateRoute({ component: Component, ...rest }) {
   return (
@@ -35,7 +36,8 @@ class App extends Component {
 
         <Switch>
           <Route path="/login" component={Login} />
-          <Route exact path="/" component={Dashboard} />
+          <Route path="/home" component={Homepage} />
+          <Route exact path="/" component={Homepage} />
           <Route path="/forgotpwd" component={ForgotPWD} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           

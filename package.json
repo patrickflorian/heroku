@@ -33,6 +33,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "react-cookie": "^4.0.0",
     "redux": "^4.0.1"
   }
 }
