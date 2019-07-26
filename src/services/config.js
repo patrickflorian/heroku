@@ -1,1 +1,1 @@
-export default {apiUrl:"http://localhost:3000/"}
+export default {apiUrl:"https://pfem1uds.herokuapp.com/"}
