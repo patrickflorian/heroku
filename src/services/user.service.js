@@ -14,7 +14,7 @@ function login(email, password) {
     // eslint-disable-next-line no-unused-vars
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'http://localhost:3001' },
+        headers: { 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*' },
         body: JSON.stringify({ email, password }),
     };
     /*
