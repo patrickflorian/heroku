@@ -45,7 +45,7 @@ function update(location) {
         locationService.update(location)
             .then(
                 location => { 
-                    dispatch(success());
+                    dispatch(success(location));
                     history.push('/dashboard');
                     dispatch(alertActions.success('location successfully updated'));
                 },
@@ -81,12 +81,14 @@ function getAll() {
 function _delete(id) {
     return dispatch => {
         dispatch(request(id));
-
+        // eslint-disable-next-line no-restricted-globals
+        if(confirm(" do you want todelete this classroom ? "))
         locationService.delete(id)
             .then(
                 location => dispatch(success(id)),
                 error => dispatch(failure(id, error.toString()))
             );
+        else dispatch(failure(id,"Canceled"))
     };
 
     function request(id) { return { type: locationConstants.DELETE_REQUEST, id } }

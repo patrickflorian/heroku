@@ -33,7 +33,7 @@ class MapContainer extends Component {
       showingInfoWindow: true,
       // selectedPlace :{name :"FSEG de L'UDs"}
       activeMarkerFocused: true,
-      center:marker.position
+      //center:marker.position
     })
 
   };
@@ -107,9 +107,9 @@ class MapContainer extends Component {
         {locations.items && locations.items.map((location,i)=>
             <Marker key={i} onClick={this.onMarkerClick}
             location={location}
-              name={location.name}
+              name={location.classroom}
               description={location.description}
-              position={{ lat: location.lat, lng: location.lng }}
+              position={{ lat: location.latitude, lng: location.longitude }}
               icon={{
                 url: this.getMarkerImage(),
                 anchor: new google.maps.Point(16, 32),

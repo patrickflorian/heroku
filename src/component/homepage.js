@@ -5,8 +5,11 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 import logo from '../img/mymap.png';
 import markerIconFocused from '../icons/marker.1.svg';
+import search_marker from '../icons/markerf.svg';
+import loop from '../icons/loop.svg';
 import loading from '../icons/loading.gif';
 
+import AutoComplete from './autocomplete';
 
 import { locationActions } from '../actions';
 import { locationConstants } from '../constants';
@@ -14,13 +17,18 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 class MapContainer extends Component {
 
-    state = {
-        showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {},
-        activeMarkerFocused: false,
-        center: { lat: 5.4429218, lng: 10.068471199999976 }
-    };
+    constructor(props){
+        super(props)
+        this.state = {
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+            center: { lat: 5.4429218, lng: 10.068471199999976 },
+            searchedLocation:{}
+        };
+        //this.onChoose = this.onChoose.bind(this);
+    }
+    
     componentDidMount() {
         this.props.dispatch(locationActions.getAll());
     }
@@ -28,17 +36,28 @@ class MapContainer extends Component {
     onMapCreated() {
 
     }
+    search(e){
+        const { value } = e.target;
+    }
     onMarkerClick = (props, marker, e) => {
+        console.log(props)
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true,
-            // selectedPlace :{name :"FSEG de L'UDs"}
-            activeMarkerFocused: true,
-            center: marker.position
+            //center: marker.position
         })
 
     };
+    onChoose=(location)=>{
+        console.log(location)
+        this.setState({
+            searchedLocation:location,
+            center:{lat:location.latitude,lng:location.longitude},
+        });
+        console.log('center moved');
+        console.log(this.state.center)
+    }
     onMapClicked = (props) => {
         if (this.state.showingInfoWindow) {
             this.setState({
@@ -68,8 +87,8 @@ class MapContainer extends Component {
 
 
     render() {
-
-        let {
+    
+        const {
             google, locations
         } = this.props;
 
@@ -86,9 +105,19 @@ class MapContainer extends Component {
             },
             floating:{
                 bottom:'40px',
-                left:'40px',
+                left:'20px',
                 position:'fixed',
                 boxShadow:'2px 2px 3px #999'
+            },
+            search_input:{
+                top:'120px',
+                left:'20px',
+                position:'fixed',
+                width:'35%',
+                minWidth:'150px',
+                margin:'0 auto',
+                boxShadow:'2px 2px 5px #999',
+                color: '#fff',
             }
 
         }
@@ -97,11 +126,11 @@ class MapContainer extends Component {
             <div>
                 {locations.loading && <div> <amp-lightbox id="my-lightbox"
                     layout="display">
-                    <div class="lightbox"
+                    <div className="lightbox"
                         on="tap:my-lightbox.close"
                         role="button"
                         tabindex="0">
-                        <h1><img class="center" width="200px" src={loading} alt="" /></h1>
+                        <h1><img className="center" width="200px" src={loading} alt="" /></h1>
                     </div>
                 </amp-lightbox></div>}
                 <Map containerStyle={styles.container}
@@ -113,12 +142,12 @@ class MapContainer extends Component {
                     style={styles.map}
                     onClick={this.onMapClicked}>
 
-                    {locations.items && locations.items.map((location, i) =>
+                    {(locations.items&&this.state.searchedLocation) && locations.items.map((location, i) =>
                         <Marker key={i} onClick={this.onMarkerClick}
                             location={location}
-                            name={location.name}
+                            name={location.classroom}
                             description={location.description}
-                            position={{ lat: location.lat, lng: location.lng }}
+                            position={{ lat: location.latitude, lng: location.longitude }}
                             icon={{
                                 url: this.getMarkerImage(),
                                 anchor: new google.maps.Point(16, 32),
@@ -126,6 +155,19 @@ class MapContainer extends Component {
                             }}
                         />
                     )}
+                    {this.state.searchedLocation&&
+                        <Marker onClick={this.onMarkerClick}
+                            location={this.searchedLocation}
+                            name={this.state.searchedLocation.classroom}
+                            description={this.state.searchedLocation.description}
+                            position={{lat:this.state.searchedLocation.latitude,lng:this.state.searchedLocation.longitude}}
+                            icon={{
+                                url: search_marker,
+                                anchor: new google.maps.Point(16, 32),
+                                scaledSize: new google.maps.Size(32, 32)
+                            }}
+                        />
+                    }
 
                     <InfoWindow
                         marker={(this.state.activeMarker != null) && this.state.activeMarker}
@@ -139,20 +181,32 @@ class MapContainer extends Component {
                         </div>
                     </InfoWindow>
                 </Map>
+                <div className="ampstart-input inline-block absolute m0 p0" style={styles.search_input}>
+                            <AutoComplete suggestions={locations.items} onChoose={this.onChoose}/>
+                            <label className="absolute top-0 right-0 bottom-0 left-0" 
+                            aria-hidden="false"
+                            style={{position:'relative',backgroundColor:'#fff',color:'#222',height:'30px'}}
+                            >find a classroom <img src={loop} alt="" width="15"/></label>
+                        </div>
                 <header
-                    className="ampstart-headerbar fixed flex justify-start items-center top-0 left-0 right-0 pl2 pr4 pt2 md-pt0 " style={{backgroundColor:'#222'}}>
+                    className="ampstart-headerbar fixed flex justify-start items-center top-0 left-0 right-0 pl2 pr4 pt2 md-pt0 ">
 
                     <a href="/home"
                         className="text-decoration-none inline-block mx-auto ampstart-headerbar-home-link mb1 md-mb0 ">
                         <amp-img src={logo} width="100" height="30" layout="fixed" class="my0 mx-auto "
                             alt="logo">
                         </amp-img>
-                    </a>
+
+                
+                    </a>                        
+                    
                 </header>
+                        
+                    
                 <Link className="ampstart-btn " to='/login' style={styles.floating}>
                     SIGN IN {/* <br/><em>for more</em> */}
-                </Link>            
-                </div>
+                </Link>
+            </div>
         )
     }
 }

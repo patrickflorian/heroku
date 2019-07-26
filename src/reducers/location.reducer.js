@@ -1,9 +1,9 @@
 import { locationConstants } from '../constants';
 const initialState ={
   items:[
-    {id:1,lat: 5.4429218, lng: 10.068471199999976,description:'Universite de Dschang, Cameroon',name:'FSEG '},
-    {id:2,lat:5.445715, lng:10.067634,description:'Universite de Dschang, Cameroon',name:'Restaurant universitaire'},
-    {id:3,lat: 5.440038, lng: 10.071123,description:'Universite de Dschang, Cameroon',name:'Amphi 600,Campus B'},  ],
+    {id:1,latitude: 5.4429218, longitude: 10.068471199999976,description:'Universite de Dschang, Cameroon',classroom:'FSEG '},
+    {id:2,latitude:5.445715, longitude:10.067634,description:'Universite de Dschang, Cameroon',classroom:'Restaurant universitaire'},
+    {id:3,latitude: 5.440038, longitude: 10.071123,description:'Universite de Dschang, Cameroon',classroom:'Amphi 600,Campus B'},  ],
   update:{location:{}}
 };
 export function locations(state = initialState, action) {

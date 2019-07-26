@@ -1,16 +1,13 @@
 import { userConstants } from '../constants';
 const initialState ={
-  items:[
-    {id:1,password:'admin',email:'noumbissipatrick@gmail.com',role:'administrator'},
-    {id:2,password:'admin',email:'vaillantyomen@gmail.com',role:'administrator'},
-    {id:3,password:'admin',email:'mpombiezejordan@gmail.com',role:'collector'}
-  ],
+  items:[],
   update:{user:{}}
 };
 export function users(state = initialState /*{}*/, action) {
   switch (action.type) {
     case userConstants.ADD_REQUEST:
         return {
+          items: state.items,
           loading: true,
           update:{user:{}}
         };
@@ -18,7 +15,8 @@ export function users(state = initialState /*{}*/, action) {
         const nextitem=state.items;
         nextitem.push(action.user)
         return{...state,
-          items:nextitem
+          items:nextitem,
+          loading:false
         };
       case userConstants.ADD_FAILURE:
         return{
@@ -68,7 +66,8 @@ export function users(state = initialState /*{}*/, action) {
       };
     case userConstants.GETALL_SUCCESS:
       return {
-        items: action.users
+        items: action.users,
+        loading:false
       };
     case userConstants.GETALL_FAILURE:
       return { 

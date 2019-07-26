@@ -1,6 +1,7 @@
 import React ,{Component } from 'react';
 import {connect} from 'react-redux';
-import {userConstants} from '../constants';
+//import {userConstants} from '../constants';
+import {userActions} from '../actions';
 
 class UserForm extends Component{
     constructor(props){
@@ -15,11 +16,11 @@ class UserForm extends Component{
     }
     componentDidMount(){
         const {users}= this.props;
-        if(users.action==="update"){
+        if(users.action==="update"&& users.update.user  ){
             const id = users.update.user.id;
             const email=users.update.user.email;
             const password=users.update.user.password;
-            this.setState({email,password,confirm_pwd:password,id,passwordmatch:true});
+            this.setState({email,password:'',confirm_pwd:'',id,passwordmatch:false});
         }
      }
     
@@ -49,7 +50,7 @@ class UserForm extends Component{
     
         if ( this.passwordMatch(confirm_pwd,password) && email && password && role) {
             console.log('in');
-            dispatch(/* userActions.update({id:users.update.user.id,email, password,role} */{type:userConstants.UPDATE_SUCCESS,user:{id,email, password,role}});
+            dispatch(userActions.update({id,email, password,is_admin:(role==='administrator')})/* {type:userConstants.UPDATE_SUCCESS,user:{id,email, password,role}} */);
         }
     }
 
@@ -61,16 +62,15 @@ class UserForm extends Component{
     
         if ( this.passwordMatch(confirm_pwd,password) && email && password && role) {
             console.log('in');
-             dispatch(/* userActions.add({email, password,role}) */ {type:userConstants.ADD_SUCCESS,user:{id:5,email, password,role}})
+             dispatch( userActions.add({email, password,is_admin:(role==='administrator')}) /* {type:userConstants.ADD_SUCCESS,user:{id:5,email, password,role}} */)
         }
     }
     render(){
         let {email,password}={email:"",password:"",role:""};
         const {users} = this.props;
         const {submitted} = this.state;
-        if(users.action==="update"){
+        if(users.action==="update"&& users.update.user){
             email=users.update.user.email;
-            password=users.update.user.password;
         }
         return (
             <form className="col-12 mb2" onSubmit={this.handleSubmit}>
@@ -82,27 +82,27 @@ class UserForm extends Component{
                             <option value="collector"  >Collector</option>
                             <option value="administrator" >Administrator</option>
                         </select>
-                        <label htmlFor="role" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Rôle</label>
+                        <label htmlFor="role" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Rôle <span className="danger">*</span></label>
                     </div>
                     {((submitted && !this.state.role)||this.state.role==='') &&
                                 <div className="help-block right danger">select a role</div>
                             }
                     <div className="ampstart-input inline-block relative m0 p0 mb1 mt3 border-bottom ">
-                        <input type="email" name="email" id="email" defaultValue={email} onChange={this.handleChange} className="block border-none p0 m0" placeholder="email"  required/>
-                        <label htmlFor="email" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Email</label>
+                        <input type="email" name="email" id="email" defaultValue={email} onChange={this.handleChange} className="block border-none p0 m0" placeholder="email"  />
+                        <label htmlFor="email" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Email <span className="danger">*</span></label>
                     </div>
                     {submitted && !this.state.email &&
                                 <div className="help-block right danger">email is required</div>
                             }
-                    <div className="ampstart-input inline-block relative m0 p0  border-bottom">
-                        <input type="password"required  defaultValue={password} name="password" id="password"  onChange={this.handleChange} className="block border p0 m0" placeholder="Password" />
-                        <label htmlFor="pwd" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Password</label>
+                    <div className="ampstart-input inline-block relative m0 p0 mt3 border-bottom">
+                        <input type="password"  defaultValue={password} name="password" id="password"  onChange={this.handleChange} className="block border p0 m0" placeholder="Password" />
+                        <label htmlFor="pwd" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">Password <span className="danger">*</span></label>
                     </div>
                     {submitted && !this.state.password &&
                                 <div className="help-block right danger">password is required</div>
                             }
                     <div className="ampstart-input inline-block relative m0 p0 mb1 mt2 border-bottom">
-                        <input type="password" name="confirm_pwd" defaultValue={password} id="confirm_pwd" onChange={this.handleChange} className="block border p0 m0" placeholder="confirm password" required/>
+                        <input type="password" name="confirm_pwd" defaultValue={password} id="confirm_pwd" onChange={this.handleChange} className="block border p0 m0" placeholder="confirm password" />
                         <label htmlFor="C" className="absolute top-0 right-0 bottom-0 left-0" aria-hidden="true">confirm password</label>
                     </div>
                     {submitted && !this.state.passwordmatch &&

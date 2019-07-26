@@ -9,12 +9,16 @@ import ForgotPWD from './component/forgot-pwd';
 import './css/page.css';
 import Homepage from './component/homepage';
 
+
+function hasAuth(){
+  return localStorage.getItem('user')&&JSON.parse(localStorage.getItem('user')).is_admin
+}
 function PrivateRoute({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
       render={props =>
-        localStorage.getItem('user') ? (
+        (hasAuth()) ? (
           <Component {...props} />
         ) : (
           <Redirect

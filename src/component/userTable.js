@@ -11,14 +11,6 @@ class UserTable extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            users: {
-                items: [
-                    { id: 1, email: 'noumbissipatrick@gmail.com', role: 'administrator' },
-                    { id: 2, email: 'vaillantyomen@gmail.com', role: 'administrator' },
-                    { id: 3, email: 'mpombiezejordan@gmail.com', role: 'collector' }
-                ],
-                update:{user:{}}
-            }, 
             formAreaVisible: true,
         };
     }
@@ -55,11 +47,11 @@ class UserTable extends React.Component{
                 {users.error && <span className="danger">ERROR: {users.error}</span>}
                 {users.loading && <div> <amp-lightbox id="my-lightbox"
                     layout="display">
-                    <div class="lightbox"
+                    <div className="lightbox"
                         on="tap:my-lightbox.close"
                         role="button"
                         tabindex="0">
-                        <h1><img class="center" width="200px" src={loading} alt="" /></h1>
+                        <h1><img className="center" width="200px" src={loading} alt="" /></h1>
                     </div>
                 </amp-lightbox></div>}
         
@@ -70,9 +62,12 @@ class UserTable extends React.Component{
                         <thead className="thead-inverse">
                             <tr>
                                 <th>#</th>
-                                <th>ROLE</th>
-                                <th>EMAIL</th>
                                 <th>USERNAME</th>
+                                <th>ROLE</th>
+                                <th>FIRSTNAME</th>
+                                <th>LASTNAME</th>
+                                <th>EMAIL</th>
+                                
                                 <th>
                                     <button  className="ampstart-btn ampstart-btn-secondary"
                                         style={{"color":"#0f0"}} onClick={()=>{this.props.dispatch({type:userConstants.ADD_ACTION});this.props.dispatch({type:'TOGGLE_FORM_AREA_VISIBILITY',value:true});}}>
@@ -84,7 +79,7 @@ class UserTable extends React.Component{
                                             c0,4.989,4.044,9.032,9.031,9.032c4.988,0,9.031-4.043,9.031-9.032C19.031,5.012,14.988,0.968,10,0.968z M10,17.902
                                             c-4.364,0-7.902-3.539-7.902-7.903c0-4.365,3.538-7.902,7.902-7.902S17.902,5.635,17.902,10C17.902,14.363,14.364,17.902,10,17.902
                                             z"></path>
-                                        </svg> Ajouter
+                                        </svg> new user
                                     </button>
                                 </th>
                             </tr>
@@ -94,10 +89,12 @@ class UserTable extends React.Component{
                                 users.items && users.items.map(
                                     (user,index)=>
                                     <tr key={index}>
-                                        <th scope="row"> {user.id} </th>
-                                        <td> {user.role} </td>
+                                        <th scope="row"> </th>
+                                        <td>{user.username}</td>
+                                        <td> {user.is_admin?"Administrator":"Collector"} </td>
+                                        <td>{user.firstname}</td>
+                                        <td>{user.lastname}</td>
                                         <td> {user.email }</td>
-                                        <td>@mdo</td>
                                         <td>
                                             <button className="ampstart-btn ampstart-btn-secondary" onClick={this.updateUser(user)} style={{"color":"#f6f"}}>
                                                 <svg className="icon icon-user" xmlns="http://www.w3.org/2000/svg" width="20"

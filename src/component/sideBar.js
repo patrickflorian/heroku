@@ -31,7 +31,7 @@ class SideBar extends Component{
           L'UNIVERSITE DE DSCHANG</h1>
                     </ul>
 
-                    {(this.props.user) ?
+                    {(this.props.user&&this.props.user.is_admin) ?
                         <Link to='/login' className='ampstart-btn ampstart-btn-secondary caps col-12 mt4 mb4 border-none' on="tap:header-sidebar.toggle" tabIndex="0" onClick={this.handleClick} >
                             disconnect
                         </Link>

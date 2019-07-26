@@ -13,11 +13,11 @@ export const userActions = {
     delete: _delete
 };
 
-function login(username, password) {
+function login(email, password) {
     return dispatch => {
-        dispatch(request({ username }));
+        dispatch(request({ email }));
 
-        userService.login(username, password)
+        userService.login(email, password)
             .then(
                 user => { 
                     dispatch(success(user));
@@ -88,7 +88,7 @@ function update(user) {
         userService.update(user)
             .then(
                 user => { 
-                    dispatch(success());
+                    dispatch(success(user));
                     dispatch(alertActions.success('user successfully updated'));
                 },
                 error => {
@@ -122,12 +122,14 @@ function getAll() {
 function _delete(id) {
     return dispatch => {
         dispatch(request(id));
-
+        // eslint-disable-next-line no-restricted-globals
+        if(confirm(" do you want todelete this user ? "))
         userService.delete(id)
             .then(
                 user => dispatch(success(id)),
                 error => dispatch(failure(id, error.toString()))
             );
+            else dispatch(failure(id,"Canceled"))
     };
 
     function request(id) { return { type: userConstants.DELETE_REQUEST, id } }

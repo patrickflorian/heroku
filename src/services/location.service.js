@@ -1,5 +1,5 @@
 import { authHeader } from '../helpers';
-
+import Rest from './config';
 export const locationService = {
     //login,
     logout,
@@ -37,49 +37,52 @@ function logout() {
 function getAll() {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001'}
+        
     };
-
-    return fetch(`api/location`, requestOptions).then(handleResponse);
+    return fetch(Rest.apiUrl+`api/locations`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001'},
     };
 
-    return fetch(`api/location/${id}`, requestOptions).then(handleResponse);
+    return fetch(Rest.apiUrl+`api/location/${id}`, requestOptions).then(handleResponse);
 }
 
 function add(location) {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(location)
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001','Content-Type': 'application/json' },
+        body: JSON.stringify(location),
+        
     };
 
-    return fetch(`api/location/new`, requestOptions).then(handleResponse);
+    return fetch(Rest.apiUrl+`api/location/`, requestOptions).then(handleResponse);
 }
 
 function update(location) {
+    console.log(JSON.stringify(location))
     const requestOptions = {
         method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(location)
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001', 'Content-Type': 'application/json' },
+        body: JSON.stringify(location),
+        
     };
 
-    return fetch(`api/location/${location.id}`, requestOptions).then(handleResponse);;
+    return fetch(Rest.apiUrl+`api/location/${location.id}/edit`, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
-        headers: authHeader()
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001'}
     };
 
-    return fetch(`api/location/${id}`, requestOptions).then(handleResponse);
+    return fetch(Rest.apiUrl+`api/location/${id}/delete`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -96,7 +99,7 @@ function handleResponse(response) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-
+        console.log(data)
         return data;
     });
 }
