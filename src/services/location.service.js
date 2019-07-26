@@ -37,7 +37,7 @@ function logout() {
 function getAll() {
     const requestOptions = {
         method: 'GET',
-        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001'}
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'*'}
         
     };
     return fetch(Rest.apiUrl+`api/locations`, requestOptions).then(handleResponse);
@@ -46,7 +46,7 @@ function getAll() {
 function getById(id) {
     const requestOptions = {
         method: 'GET',
-        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001'},
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'*'},
     };
 
     return fetch(Rest.apiUrl+`api/location/${id}`, requestOptions).then(handleResponse);
@@ -55,7 +55,7 @@ function getById(id) {
 function add(location) {
     const requestOptions = {
         method: 'POST',
-        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001','Content-Type': 'application/json' },
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'*','Content-Type': 'application/json' },
         body: JSON.stringify(location),
         
     };
@@ -67,7 +67,7 @@ function update(location) {
     console.log(JSON.stringify(location))
     const requestOptions = {
         method: 'PUT',
-        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001', 'Content-Type': 'application/json' },
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json' },
         body: JSON.stringify(location),
         
     };
@@ -79,7 +79,7 @@ function update(location) {
 function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
-        headers: { ...authHeader(),'Access-Control-Allow-Origin':'http://localhost:3001'}
+        headers: { ...authHeader(),'Access-Control-Allow-Origin':'*'}
     };
 
     return fetch(Rest.apiUrl+`api/location/${id}/delete`, requestOptions).then(handleResponse);
