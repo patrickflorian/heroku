@@ -51,6 +51,7 @@ class Login extends Component {
                     <span className="italic">Aussi profitez de l'<b><a href="javascipt:void(0)" className="important">API</a></b> que nous mettons
                     a votre disposition pour une eventuelle utilisation des donnnées en notre possession</span></p>
                 <p className="ampstart-btn ampstart-btn-primary"><Link to="/register" className="btn btn-link">Register</Link></p>
+                <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="fr_FR" data-type="vertical" data-theme="dark" data-vanity="patrick-florian-noumbissi-malanou-5710b3185"><a class="LI-simple-link" href='https://cm.linkedin.com/in/patrick-florian-noumbissi-malanou-5710b3185?trk=profile-badge'>Patrick Florian Noumbissi Malanou</a></div>
             </aside>
         )
     }
