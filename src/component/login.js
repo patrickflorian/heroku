@@ -96,7 +96,7 @@ class Login extends Component {
                 <div><Link to="/forgotpwd">Forget password</Link>
                     <Link className="right" to="/register">Register</Link>
                 </div>
-                <div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="fr_FR" data-type="vertical" data-theme="dark" data-vanity="patrick-florian-noumbissi-malanou-5710b3185"><a class="LI-simple-link" href='https://cm.linkedin.com/in/patrick-florian-noumbissi-malanou-5710b3185?trk=profile-badge'>Patrick Florian Noumbissi Malanou</a></div>
+                <div class="LI-profile-badge mt3"  data-version="v1" data-size="medium" data-locale="fr_FR" data-type="vertical" data-theme="dark" data-vanity="patrick-florian-noumbissi-malanou-5710b3185"><a class="LI-simple-link" href='https://cm.linkedin.com/in/patrick-florian-noumbissi-malanou-5710b3185?trk=profile-badge'>Patrick Florian Noumbissi Malanou</a></div>
             </section>
         )
     }
