@@ -14,7 +14,7 @@
     "react-scripts": "2.1.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "serve": "^9.4.0"
+    "serve": "^10.1.2"
   },
   "scripts": {
     "dev": "react-scripts start",
